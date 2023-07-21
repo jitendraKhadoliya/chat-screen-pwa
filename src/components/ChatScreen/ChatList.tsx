@@ -363,11 +363,41 @@ const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
           </Box>
           {/* Access the chat messages */}
 
-          {chatDataItem.chats.map((chat) => (
-            <>
-              <ChatMessageComponent key={chat.id} chat={chat} />
-            </>
-          ))}
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+            gap="16px"
+            maxHeight="60vh" // Set the maximum height for the box
+            overflowY="scroll" // Enable vertical scrolling if content exceeds the height
+            padding="16px"
+            borderRadius="8px"
+            boxShadow="0px 4px 8px 0px rgba(0, 0, 0, 0.12)"
+            // scrollbarWidth="none" // Disable default scrollbar
+            scrollBehavior={"smooth"}
+            // Custom scrollbar style
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "3px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#888",
+                borderRadius: "3px",
+              },
+              "&::-webkit-scrollbar-thumb:hover": {
+                background: "#555",
+              },
+              "&::-webkit-scrollbar-track": {
+                background: "transparent",
+              },
+            }}
+          >
+            {chatDataItem.chats.map((chat) => (
+              <>
+                <ChatMessageComponent key={chat.id} chat={chat} />
+              </>
+            ))}
+          </Box>
         </Box>
       ))}
     </Box>

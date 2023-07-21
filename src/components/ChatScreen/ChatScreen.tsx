@@ -37,7 +37,8 @@ const ChatScreen = () => {
     <Box
       borderRadius="32px"
       width="375px"
-      height="812px"
+      // height="812px"
+      height={"100vh"}
       background="#FAF9F4"
       justifyContent="center"
     >

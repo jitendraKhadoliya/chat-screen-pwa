@@ -1,39 +1,3 @@
-// export interface ChatMessage {
-//   id: string;
-//   message: string;
-//   timestamp: string;
-//   sender: string;
-// }
-
-// export interface ChatMessage {
-//   id: string;
-//   message: string;
-//   timestamp: string;
-//   from: string;
-//   to: string;
-//   name: string;
-// }
-
-// export interface ChatMessage {
-//   id: string;
-//   message: string;
-//   timestamp: string;
-//   tripData: string; // Replace 'string' with the correct type for trip data
-//   from: string;
-//   to: string;
-//   time: string; // Replace 'string' with the correct type for time
-//   date: string; // Replace 'string' with the correct type for date
-// }
-
-// // export type ChatData = [Array<any>, string, string, string, string, string];
-
-// export type ChatData = {
-//   id: number;
-//   message: string;
-//   sender: string;
-//   time: string;
-// };
-
 // types.ts
 export interface ChatMessage {
   id: string;

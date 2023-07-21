@@ -10,9 +10,6 @@ interface ChatListProps {
 const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
   const [toggle, setToggle] = useState<boolean>(false);
 
-  const groupImage = "../../asset/groupImage.jpg";
-  const imageUrl = "../../asset/shortImage.jpeg"; // Replace with the actual URL or import the image
-
   const handleToggleClick = () => {
     setToggle(!toggle);
   };
@@ -114,10 +111,11 @@ const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
                     position="relative"
                   >
                     <Image
-                      src={imageUrl}
+                      src="https://fastly.picsum.photos/id/1072/160/160.jpg?hmac=IDpbpA5neYzFjtkdFmBDKXwgr-907ewXLa9lLk9JuA8"
                       alt="Upper Image 1"
-                      width="26px"
-                      height="26px"
+                      width="48px"
+                      height="48px"
+                      bgRepeat={"no-repeat"}
                       borderRadius="50%"
                     />
                   </Box>

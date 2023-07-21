@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChatData } from "../types";
 import ChatMessageComponent from "./ChatMessage";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
@@ -8,7 +8,14 @@ interface ChatListProps {
 }
 
 const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
+  const [toggle, setToggle] = useState<boolean>(false);
+
   const groupImage = "../../asset/groupImage.jpg";
+  const imageUrl = "../../asset/shortImage.jpeg"; // Replace with the actual URL or import the image
+
+  const handleToggleClick = () => {
+    setToggle(!toggle);
+  };
 
   return (
     <Box w={"100%"}>
@@ -107,7 +114,7 @@ const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
                     position="relative"
                   >
                     <Image
-                      src={groupImage}
+                      src={imageUrl}
                       alt="Upper Image 1"
                       width="26px"
                       height="26px"
@@ -169,6 +176,7 @@ const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
                   height="24px"
                   flexShrink={0}
                   cursor={"pointer"}
+                  onClick={handleToggleClick}
                 >
                   {/* 3 DOt svg */}
                   <svg
@@ -205,94 +213,151 @@ const ChatList: React.FC<ChatListProps> = ({ chatData }) => {
                 {/* Your content goes here */}
               </Flex>
               <Flex w={"100%"} justifyContent={"flex-end"}>
-                <Box
-                  display="flex"
-                  width="156px"
-                  flexDirection="column"
-                  alignItems="flex-start"
-                  borderRadius="8px"
-                  boxShadow="0px 4px 8px 0px rgba(0, 0, 0, 0.12)"
-                >
-                  {/* Frame 18  */}
+                {toggle && (
                   <Box
                     display="flex"
-                    height="48px"
-                    padding="7px 12px"
-                    alignItems="center"
-                    gap="12px"
-                    alignSelf="stretch"
-                    borderRadius="8px 8px 0px 0px"
-                    border="1px solid #E5E5E0"
-                    background="#FFF"
+                    width="156px"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    borderRadius="8px"
+                    boxShadow="0px 4px 8px 0px rgba(0, 0, 0, 0.12)"
+                    pos={"absolute"}
                   >
-                    <Box width="20px" height="20px">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
+                    {/* Frame 18  */}
+                    <Box
+                      cursor={"pointer"}
+                      display="flex"
+                      height="48px"
+                      padding="7px 12px"
+                      alignItems="center"
+                      gap="12px"
+                      alignSelf="stretch"
+                      borderRadius="8px 8px 0px 0px"
+                      border="1px solid #E5E5E0"
+                      background="#FFF"
+                    >
+                      <Box width="20px" height="20px">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M18.3333 17.5V15.8333C18.3333 14.2801 17.271 12.9751 15.8333 12.605M12.9167 2.7423C14.1383 3.23679 15 4.43443 15 5.83333C15 7.23224 14.1383 8.42988 12.9167 8.92437M14.1667 17.5C14.1667 15.9469 14.1667 15.1703 13.9129 14.5577C13.5746 13.741 12.9257 13.092 12.1089 12.7537C11.4964 12.5 10.7198 12.5 9.16667 12.5H6.66667C5.11353 12.5 4.33696 12.5 3.72439 12.7537C2.90763 13.092 2.25871 13.741 1.9204 14.5577C1.66667 15.1703 1.66667 15.9469 1.66667 17.5M11.25 5.83333C11.25 7.67428 9.75762 9.16667 7.91667 9.16667C6.07572 9.16667 4.58333 7.67428 4.58333 5.83333C4.58333 3.99238 6.07572 2.5 7.91667 2.5C9.75762 2.5 11.25 3.99238 11.25 5.83333Z"
+                            stroke="#141E0D"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        {/* Your content goes here */}
+                      </Box>
+                      {/* Our Text goes here */}
+                      <Text
+                        color="#141E0D"
+                        fontFamily="Mulish"
+                        fontSize="14px"
+                        fontStyle="normal"
+                        fontWeight="600"
+                        lineHeight="normal"
                       >
-                        <path
-                          d="M18.3333 17.5V15.8333C18.3333 14.2801 17.271 12.9751 15.8333 12.605M12.9167 2.7423C14.1383 3.23679 15 4.43443 15 5.83333C15 7.23224 14.1383 8.42988 12.9167 8.92437M14.1667 17.5C14.1667 15.9469 14.1667 15.1703 13.9129 14.5577C13.5746 13.741 12.9257 13.092 12.1089 12.7537C11.4964 12.5 10.7198 12.5 9.16667 12.5H6.66667C5.11353 12.5 4.33696 12.5 3.72439 12.7537C2.90763 13.092 2.25871 13.741 1.9204 14.5577C1.66667 15.1703 1.66667 15.9469 1.66667 17.5M11.25 5.83333C11.25 7.67428 9.75762 9.16667 7.91667 9.16667C6.07572 9.16667 4.58333 7.67428 4.58333 5.83333C4.58333 3.99238 6.07572 2.5 7.91667 2.5C9.75762 2.5 11.25 3.99238 11.25 5.83333Z"
-                          stroke="#141E0D"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      {/* Your content goes here */}
+                        Members
+                      </Text>
                     </Box>
-                    {/* Your content goes here */}
-                    asjsalk
-                  </Box>
-                  {/* Frame 19  */}
+                    {/* Frame 19  */}
 
-                  <Box
-                    display="flex"
-                    height="48px"
-                    padding="7px 12px"
-                    alignItems="center"
-                    gap="12px"
-                    alignSelf="stretch"
-                    borderRadius="8px 8px 0px 0px"
-                    border="1px solid #E5E5E0"
-                    background="#FFF"
-                  >
                     <Box
-                      width="20px"
-                      height="20px"
-                      // Additional styles can be added here if needed
+                      cursor={"pointer"}
+                      display="flex"
+                      height="48px"
+                      padding="7px 12px"
+                      alignItems="center"
+                      gap="12px"
+                      alignSelf="stretch"
+                      borderRadius="8px 8px 0px 0px"
+                      border="1px solid #E5E5E0"
+                      background="#FFF"
                     >
-                      {/* Your content goes here */}
+                      <Box width="20px" height="20px">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M6.98356 7.37767C7.56356 8.58569 8.35422 9.71789 9.35553 10.7192C10.3568 11.7205 11.4891 12.5112 12.6971 13.0912C12.801 13.1411 12.8529 13.166 12.9187 13.1852C13.1523 13.2533 13.4392 13.2044 13.637 13.0627C13.6927 13.0228 13.7403 12.9752 13.8356 12.8799C14.1269 12.5886 14.2726 12.4429 14.4191 12.3477C14.9715 11.9885 15.6837 11.9885 16.2361 12.3477C16.3825 12.4429 16.5282 12.5886 16.8196 12.8799L16.9819 13.0423C17.4248 13.4852 17.6462 13.7066 17.7665 13.9444C18.0058 14.4174 18.0058 14.976 17.7665 15.4489C17.6462 15.6867 17.4248 15.9082 16.9819 16.351L16.8506 16.4824C16.4092 16.9238 16.1886 17.1444 15.8885 17.313C15.5556 17.5 15.0385 17.6345 14.6567 17.6333C14.3126 17.6323 14.0774 17.5655 13.607 17.432C11.0792 16.7146 8.69387 15.3608 6.70388 13.3709C4.7139 11.3809 3.36017 8.99557 2.6427 6.46774C2.50919 5.99737 2.44244 5.76218 2.44141 5.41806C2.44028 5.03621 2.57475 4.51913 2.76176 4.18621C2.9303 3.88618 3.15098 3.66551 3.59233 3.22416L3.72369 3.09279C4.16656 2.64992 4.388 2.42849 4.62581 2.3082C5.09878 2.06898 5.65734 2.06898 6.1303 2.3082C6.36812 2.42849 6.58955 2.64992 7.03242 3.09279L7.19481 3.25518C7.48615 3.54652 7.63182 3.69219 7.72706 3.83867C8.08622 4.39108 8.08622 5.10323 7.72706 5.65564C7.63182 5.80212 7.48615 5.94779 7.19481 6.23913C7.09955 6.33439 7.05192 6.38202 7.01206 6.4377C6.87038 6.63556 6.82146 6.92244 6.88957 7.15607C6.90873 7.22181 6.93367 7.27376 6.98356 7.37767Z"
+                            stroke="#141E0D"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </Box>
+                      {/* Our Text goes here */}
+                      <Text
+                        color="#141E0D"
+                        fontFamily="Mulish"
+                        fontSize="14px"
+                        fontStyle="normal"
+                        fontWeight="600"
+                        lineHeight="normal"
+                      >
+                        Share Number
+                      </Text>
                     </Box>
-                    {/* Your content goes here */}
-                    asjsalk
-                  </Box>
-                  {/* Frame 20  */}
+                    {/* Frame 20  */}
 
-                  <Box
-                    display="flex"
-                    height="48px"
-                    padding="7px 12px"
-                    alignItems="center"
-                    gap="12px"
-                    alignSelf="stretch"
-                    borderRadius="8px 8px 0px 0px"
-                    border="1px solid #E5E5E0"
-                    background="#FFF"
-                  >
                     <Box
-                      width="20px"
-                      height="20px"
-                      // Additional styles can be added here if needed
+                      cursor={"pointer"}
+                      display="flex"
+                      height="48px"
+                      padding="7px 12px"
+                      alignItems="center"
+                      gap="12px"
+                      alignSelf="stretch"
+                      borderRadius="8px 8px 0px 0px"
+                      border="1px solid #E5E5E0"
+                      background="#FFF"
                     >
-                      {/* Your content goes here */}
+                      <Box
+                        width="20px"
+                        height="20px"
+                        // Additional styles can be added here if needed
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M7.91667 6.66667L12.0833 10.8333M12.0833 6.66667L7.91667 10.8333M5.83333 15V16.9463C5.83333 17.3903 5.83333 17.6123 5.92436 17.7263C6.00352 17.8255 6.12356 17.8832 6.25045 17.8831C6.39636 17.8829 6.56973 17.7442 6.91646 17.4668L8.90434 15.8765C9.31043 15.5517 9.51347 15.3892 9.73957 15.2737C9.94017 15.1712 10.1537 15.0963 10.3743 15.051C10.6231 15 10.8831 15 11.4031 15H13.5C14.9001 15 15.6002 15 16.135 14.7275C16.6054 14.4878 16.9878 14.1054 17.2275 13.635C17.5 13.1002 17.5 12.4001 17.5 11V6.5C17.5 5.09987 17.5 4.3998 17.2275 3.86502C16.9878 3.39462 16.6054 3.01217 16.135 2.77248C15.6002 2.5 14.9001 2.5 13.5 2.5H6.5C5.09987 2.5 4.3998 2.5 3.86502 2.77248C3.39462 3.01217 3.01217 3.39462 2.77248 3.86502C2.5 4.3998 2.5 5.09987 2.5 6.5V11.6667C2.5 12.4416 2.5 12.8291 2.58519 13.147C2.81635 14.0098 3.49022 14.6836 4.35295 14.9148C4.67087 15 5.05836 15 5.83333 15Z"
+                            stroke="#141E0D"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </Box>
+                      {/* Our Text goes here */}
+                      <Text
+                        color="#141E0D"
+                        fontFamily="Mulish"
+                        fontSize="14px"
+                        fontStyle="normal"
+                        fontWeight="600"
+                        lineHeight="normal"
+                      >
+                        Report
+                      </Text>
                     </Box>
-                    {/* Your content goes here */}
-                    asjsalk
                   </Box>
-                </Box>
+                )}
               </Flex>
             </Flex>
           </Box>

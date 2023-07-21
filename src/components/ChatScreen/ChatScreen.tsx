@@ -18,7 +18,8 @@ const ChatScreen = () => {
       setLoading(true);
       const response = await axios.get(`${API_URL}?page=${page}`);
       const newChatsData = response.data;
-      setChatData((prevChats) => [...prevChats, newChatsData]);
+      setChatData(() => [newChatsData]);
+      // setChatData((prevChats) => [...prevChats, newChatsData]);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching chats:", error);

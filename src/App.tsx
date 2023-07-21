@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  Box,
+  Center,
+  ChakraProvider,
+  Stack,
+  extendTheme,
+} from "@chakra-ui/react";
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import ChatScreen from "./components/ChatScreen/ChatScreen";
 
-function App() {
+const theme = extendTheme({
+  // Custom theme configuration
+});
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme} cssVarsRoot={undefined}>
+      {/* <Header /> */}
+      {/* <Sidebar /> */}
+      <Box
+        bg={"#1e1e1e"}
+        display={"flex"}
+        alignItems="center" // Align items vertically (on the cross axis)
+        justifyContent="center" // Justify content horizontally (on the main axis)
+      >
+        <ChatScreen />
+      </Box>
+    </ChakraProvider>
   );
-}
+};
 
 export default App;
